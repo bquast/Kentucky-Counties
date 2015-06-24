@@ -5,7 +5,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
     <script src="ky-counties.js"></script>
     
-    <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+    <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
 <style>
     body {
         padding: 0;
@@ -48,13 +48,13 @@
     var geoPath = d3.geo.path()
         .projection(projection);
         
-    svg.append('g')
-        .selectAll('path')
+    svg.append("g")
+        .selectAll("path")
         .data(counties.features)
         .enter()
-        .append('path')
+        .append("path")
         .attr( "d", geoPath )
-        .attr('class','county');
+        .attr("class","county");
  
   </script>
 </body>

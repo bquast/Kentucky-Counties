@@ -1,1 +1,1 @@
-hello map
+Example of map explained in maptimeLex [Introduction to D3.js Web Mapping Through 7 Simple Maps](https://github.com/maptimelex/d3-mapping).

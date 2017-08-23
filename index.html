@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <title>A D3 map with basic interaction</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.10.0/d3.min.js"></script>
-    <script src="ky-counties.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/queue-async/1.0.7/queue.min.js"></script>
     
     <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
 <style>
@@ -55,23 +55,32 @@
 
     var geoPath = d3.geoPath()
         .projection(projection);
-        
-    svg.append("g")
-        .selectAll("path")
-        .data(counties.features)
-        .enter()
-        .append("path")
-        .attr( "d", geoPath )
-        .attr("class","county")
-        .on("mouseover", function(d){
-            d3.select("h2").text(d.properties.NAME);
-            d3.select(this).attr("class","county hover");
-        })
-        .on("mouseout", function(d){
-            d3.select("h2").text("");
-            d3.select(this).attr("class","county");
-        });
- 
+
+
+    queue()
+        .defer(d3.json, "ky-counties.json")
+        .await(ready);
+
+
+    function ready(error, counties){
+
+	svg.append("g")
+           .selectAll("path")
+           .data(counties.features)
+           .enter()
+           .append("path")
+           .attr( "d", geoPath )
+           .attr("class","county")
+           .on("mouseover", function(d){
+               d3.select("h2").text(d.properties.NAME);
+               d3.select(this).attr("class","county hover");
+           })
+           .on("mouseout", function(d){
+               d3.select("h2").text("");
+               d3.select(this).attr("class","county");
+           });
+	}
+
   </script>
 </body>
 </html>

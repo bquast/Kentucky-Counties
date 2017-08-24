@@ -72,7 +72,7 @@
            .attr( "d", geoPath )
            .attr("class","country")
            .on("mouseover", function(d){
-               d3.select("h2").text(d.properties.NAME);
+               d3.select("h2").text(d.properties.admin);
                d3.select(this).attr("class","country hover");
            })
            .on("mouseout", function(d){
